@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <p class="">
-      Created with &#128154; by IRVB
+     <span>Created with &#128154; by IRVB </span>
       follow me on
       <a
         href="https://twitter.com/Nachor_v"
@@ -43,5 +43,11 @@ export default {
   align-items: center;
   justify-content: center;
   margin: auto;
+  max-width: 100vw;
+}
+@media (max-width: 1010px) {
+  span {
+    display: none;
+  }
 }
 </style>

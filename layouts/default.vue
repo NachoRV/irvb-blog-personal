@@ -5,8 +5,13 @@
 </template>
 
 <style>
+@font-face {
+  font-family: 'Menlo';
+  src: url('~assets/fonts/Menlo-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+
+}
 html {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Menlo', 'Open Sans', sans-serif !important;
   /* font-family: 'Special Elite', cursive; */
   font-size: 16px;
   word-spacing: 1px;
@@ -15,10 +20,12 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  width: 100%;
+  max-width: 100vw;
 
 }
-
+body {
+  max-width: 100vw;
+}
 *,
 *::before,
 *::after {

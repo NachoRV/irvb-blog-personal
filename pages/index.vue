@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <the-header />
     <div class="container-items">
       <ul>
@@ -71,6 +71,9 @@ export default {
 </script>
 
 <style scoped>
+.main {
+  max-width: 100vw;
+}
 a {
   color: black;
   text-decoration: none;
@@ -91,6 +94,17 @@ ul, li {
   min-height: 70vh;
   margin: 25px auto;
   font-family: 'Special Elite', cursive;
+}
+@media (max-width: 1010px) {
+  .container-items {
+    width: 95vw;
+    max-width: 100vw;
+    margin: 0;
+  }
+  ul, li {
+    padding: 5px;
+    width: 100%;
+  }
 }
 
 </style>

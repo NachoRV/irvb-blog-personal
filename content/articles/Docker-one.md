@@ -193,7 +193,6 @@ para lanzar una shell
 docker exec -it postgres-openathon sh
 ```
 
-Para más información, mirar https://docs.docker.com/engine/reference/commandline/run/.
 # Volumenes
 ## ¿Cómo funciona?
 Podemos crear y administrar volúmenes fuera del ámbito de un contenedor. El comando `docker volume` proporciona los subcomandos:
