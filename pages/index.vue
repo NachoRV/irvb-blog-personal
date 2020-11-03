@@ -1,73 +1,96 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        irvb-blog-personal
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+  <div>
+    <the-header />
+    <div class="container-items">
+      <ul>
+        <li
+          v-for="article of articles"
+          :key="article.slug"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+          <NuxtLink
+            :to="{ name: 'blog-slug', params: { slug: article.slug } }"
+          >
+<!--            <img
+              v-if="article.img"
+              class="h-48 xxlmin:w-1/2 xxlmax:w-full object-cover"
+              :src="article.img"
+              alt="img articulo"
+            />-->
+
+            <div class="">
+              <h2 class="font-bold">{{ article.title }}</h2>
+              <p>By {{ article.author.name }} | {{ formatDate(article.updatedAt) }}</p>
+              <!--<p class="font-bold text-gray-600 text-sm">{{ article.description }}</p>-->
+            </div>
+          </NuxtLink>
+        </li>
+      </ul>
     </div>
+    <TheFooter />
   </div>
+  <!--       <a
+           href="https://twitter.com/Nachor_v"
+           target="_blank"
+         >
+           <img src="~assets/svg/twitter-2.svg" alt="twitter" class="icon">
+         </a>-->
 </template>
 
 <script>
-export default {}
+import TheHeader from '~/components/TheHeader'
+import TheFooter from '~/components/TheFooter'
+
+export default {
+  components: { TheFooter, TheHeader },
+  async asyncData ({ $content, params }) {
+    const articles = await $content('articles')
+      .only(['title', 'description', 'img', 'slug', 'author', 'updatedAt'])
+      .sortBy('createdAt', 'desc')
+      .fetch()
+    const tags = await $content('tags', params.slug)
+      .only(['name', 'description', 'img', 'slug', 'updatedAt'])
+      .sortBy('createdAt', 'asc')
+      .fetch()
+    return {
+      articles,
+      tags
+    }
+  },
+  data () {
+    return {
+      open: false
+    }
+  },
+  methods: {
+    formatDate (date) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' }
+      return new Date(date).toLocaleDateString('es', options)
+    }
+  }
+}
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
+<style scoped>
+a {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+ul, li {
+  list-style: none;
+  margin: auto;
+}
+.container-items {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  width: 50%;
+  min-height: 70vh;
+  margin: 25px auto;
+  font-family: 'Special Elite', cursive;
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
