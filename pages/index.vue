@@ -10,13 +10,6 @@
           <NuxtLink
             :to="{ name: 'blog-slug', params: { slug: article.slug } }"
           >
-<!--            <img
-              v-if="article.img"
-              class="h-48 xxlmin:w-1/2 xxlmax:w-full object-cover"
-              :src="article.img"
-              alt="img articulo"
-            />-->
-
             <div class="">
               <h2 class="font-bold">{{ article.title }}</h2>
               <p>By {{ article.author.name }} | {{ formatDate(article.updatedAt) }}</p>
@@ -93,7 +86,7 @@ ul, li {
   width: 50%;
   min-height: 70vh;
   margin: 25px auto;
-  font-family: 'Special Elite', cursive;
+  font-family: 'Special Elite','Menlo','Inconsolata', cursive;
 }
 @media (max-width: 1010px) {
   .container-items {

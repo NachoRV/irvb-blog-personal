@@ -1,5 +1,5 @@
 ---
-title: Sobre mí
+title: Docker Compose
 description: Breve descripción sobre mi persona  y el origen de este blog
 # img: https://images.unsplash.com/photo-1580752300992-559f8e0734e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80
 img: https://cdn.pixabay.com/photo/2015/03/26/10/42/letters-691842_960_720.jpg
