@@ -97,4 +97,10 @@ ul, li {
 hi, p {
   font-family: 'Special Elite','Menlo','Inconsolata', cursive;
 }
+@media (max-width: 1010px) {
+  .container-tag-items {
+    width: 100%;
+    margin: auto;
+  }
+}
 </style>
