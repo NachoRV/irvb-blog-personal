@@ -1,16 +1,22 @@
 <template>
   <NuxtLink to="/">
     <div class="container-header">
-      <h1 class="title-one">IRVB</h1>
-      <h2 class="title-two">FrontEnd Developer</h2>
-      <h2 class="title-tree">Blog Personal</h2>
+      <h1 class="title-one">
+        IRVB
+      </h1>
+      <h2 class="title-two">
+        FrontEnd Developer
+      </h2>
+      <h2 class="title-tree">
+        Blog Personal
+      </h2>
     </div>
   </NuxtLink>
 </template>
 
 <script>
 export default {
-  name: 'TheHeader'
+  name : 'TheHeader'
 }
 </script>
 

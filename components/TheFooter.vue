@@ -1,25 +1,25 @@
 <template>
   <footer class="footer">
     <p class="">
-     <span>Created with &#128154; by IRVB </span>
+      <span>Created with &#128154; by IRVB </span>
       follow me on
       <a
-        href="https://twitter.com/Nachor_v"
+        href="https://twitter.com/I_R_V_B"
         target="_blank"
       >
-        <img src="~assets/svg/twitter-2.svg" alt="twitter" class="icon">
+        <img src="~assets/svg/twitter-2.svg" alt="twitter" class="icon" />
       </a>
       <a
         href="https://www.linkedin.com/in/ignacioroyovillanova/"
         target="_blank"
       >
-        <img src="~assets/svg/linkedin-2.svg" alt="twitter" class="icon">
+        <img src="~assets/svg/linkedin-2.svg" alt="twitter" class="icon" />
       </a>
       <a
-        href="https://twitter.com/I_R_V_B"
+        href="https://github.com/NachoRV"
         target="_blank"
       >
-        <img src="~assets/svg/github-2.svg" alt="twitter" class="icon">
+        <img src="~assets/svg/github-2.svg" alt="twitter" class="icon" />
       </a>
     </p>
   </footer>
@@ -27,16 +27,15 @@
 
 <script>
 export default {
-  name: 'TheFooter'
+  name : 'TheFooter'
 }
 </script>
 
 <style scoped>
 .icon {
-  margin: 0;
+  margin: 0 0 0 5px;
   width: 24px;
   height: 24px;
-  margin-left: 5px;
 }
 .footer{
   display: flex;

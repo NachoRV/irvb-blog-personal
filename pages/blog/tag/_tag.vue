@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TheHeader></TheHeader>
+    <TheHeader />
     <div class="container-tag-items">
       <div class="">
         <img
@@ -16,7 +16,7 @@
           </h1>
           <p>{{ tag.description }}</p>
 
-          <nuxt-content :document="tag"/>
+          <nuxt-content :document="tag" />
         </div>
       </div>
       <div>
@@ -34,7 +34,9 @@
               class="flex transition-shadow duration-150 ease-in-out shadow-sm hover:shadow-md xxlmax:flex-col"
             >
               <div>
-                <h2 class="">{{ article.title }}</h2>
+                <h2 class="">
+                  {{ article.title }}
+                </h2>
                 <p>
                   {{ formatDate(article.updatedAt) }}
                 </p>
@@ -44,22 +46,22 @@
         </ul>
       </div>
     </div>
-    <TheFooter></TheFooter>
+    <TheFooter />
   </div>
 </template>
 
 <script>
 import TheFooter from '~/components/TheFooter'
 export default {
-  components: { TheFooter },
-  async asyncData ({ $content, params }) {
+  components : { TheFooter },
+  async asyncData({ $content, params }) {
     const tags = await $content('tags')
-      .where({ slug: { $contains: params.tag } })
+      .where({ slug : { $contains : params.tag } })
       .limit(1)
       .fetch()
     const tag = tags.length > 0 ? tags[0] : {}
     const articles = await $content('articles', params.slug)
-      .where({ tags: { $contains: tag.name } })
+      .where({ tags : { $contains : tag.name } })
       .sortBy('createdAt', 'asc')
       .fetch()
     return {
@@ -67,20 +69,54 @@ export default {
       tag
     }
   },
-  methods: {
-    formatDate (date) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric' }
+  methods : {
+    formatDate(date) {
+      const options = { year : 'numeric', month : 'long', day : 'numeric' }
       return new Date(date).toLocaleDateString('en', options)
     }
   },
-  head () {
+  head() {
     return {
-      title: `${this.tag.name} | IRVB`,
-      meta: [
+      title : `${this.tag.title} | IRVB 👨🏼‍💻`,
+      meta  : [
         {
-          hid: 'description',
-          name: 'description',
-          content: `${this.tag.description}`
+          hid     : 'description',
+          name    : 'description',
+          content : `${this.tag.description}`
+        }, {
+          hid     : 'twitter:title',
+          name    : 'twitter:title',
+          content : `${this.tag.title} | IRVB 👨🏼‍💻`
+        },
+        {
+          hid     : 'twitter:description',
+          name    : 'twitter:description',
+          content : `${this.tag.description}`
+        },
+        {
+          hid     : 'og:title',
+          name    : 'og:title',
+          content : `${this.tag.title} | IRVB👨🏼‍💻`
+        },
+        {
+          hid     : 'og:description',
+          name    : 'og:description',
+          content : this.tag.description
+        },
+        {
+          hid      : 'og:image',
+          property : 'og:image',
+          content  : `${this.tag.image}`
+        },
+        {
+          hid      : 'og:image:secure_url',
+          property : 'og:image',
+          content  : `${this.tag.image}`
+        },
+        {
+          hid      : 'og:image:alt',
+          property : 'og:image:alt',
+          content  : this.tag.title
         }
       ]
     }
@@ -106,7 +142,7 @@ ul, li {
   margin: auto;
   padding: 0;
 }
-hi, p {
+h1, p {
   font-family: 'Special Elite','Menlo','Inconsolata', cursive;
 }
 @media (max-width: 1010px) {

@@ -21,14 +21,14 @@
 
 <script>
 export default {
-  props: {
-    prev: {
-      type: Object,
-      default: () => null
+  props : {
+    prev : {
+      type    : Object,
+      default : () => null
     },
-    next: {
-      type: Object,
-      default: () => null
+    next : {
+      type    : Object,
+      default : () => null
     }
   }
 }

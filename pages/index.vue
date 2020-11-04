@@ -11,7 +11,9 @@
             :to="{ name: 'blog-slug', params: { slug: article.slug } }"
           >
             <div class="">
-              <h2 class="font-bold">{{ article.title }}</h2>
+              <h2 class="font-bold">
+                {{ article.title }}
+              </h2>
               <p>By {{ article.author.name }} | {{ formatDate(article.updatedAt) }}</p>
               <!--<p class="font-bold text-gray-600 text-sm">{{ article.description }}</p>-->
             </div>
@@ -34,8 +36,8 @@ import TheHeader from '~/components/TheHeader'
 import TheFooter from '~/components/TheFooter'
 
 export default {
-  components: { TheFooter, TheHeader },
-  async asyncData ({ $content, params }) {
+  components : { TheFooter, TheHeader },
+  async asyncData({ $content, params }) {
     const articles = await $content('articles')
       .only(['title', 'description', 'img', 'slug', 'author', 'updatedAt'])
       .sortBy('createdAt', 'desc')
@@ -49,26 +51,19 @@ export default {
       tags
     }
   },
-  data () {
+  data() {
     return {
-      open: false
+      open : false
     }
   },
-  methods: {
-    formatDate (date) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric' }
+  methods : {
+    formatDate(date) {
+      const options = { year : 'numeric', month : 'long', day : 'numeric' }
       return new Date(date).toLocaleDateString('es', options)
     }
   },
-  head: {
-    title: 'Home page | IRVB',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Home page description'
-      }
-    ]
+  head : {
+    title : 'Home page | IRVB👨🏼‍💻'
   }
 }
 </script>
