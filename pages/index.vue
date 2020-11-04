@@ -59,6 +59,16 @@ export default {
       const options = { year: 'numeric', month: 'long', day: 'numeric' }
       return new Date(date).toLocaleDateString('es', options)
     }
+  },
+  head: {
+    title: 'Home page | IRVB',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Home page description'
+      }
+    ]
   }
 }
 </script>

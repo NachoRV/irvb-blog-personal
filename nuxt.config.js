@@ -1,12 +1,9 @@
+import META_INFO from './meta/meta.js'
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'irvb-blog-personal',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
-    ],
+    title: 'IRVB Blog Personal',
+    meta: META_INFO,
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {

@@ -58,6 +58,18 @@ export default {
       next
     }
   },
+  head () {
+    return {
+      title: `${this.article.title} | IRVB`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Home page description'
+        }
+      ]
+    }
+  },
   methods: {
     formatDate (date) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' }

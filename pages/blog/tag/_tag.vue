@@ -72,6 +72,18 @@ export default {
       const options = { year: 'numeric', month: 'long', day: 'numeric' }
       return new Date(date).toLocaleDateString('en', options)
     }
+  },
+  head () {
+    return {
+      title: `${this.tag.name} | IRVB`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `${this.tag.description}`
+        }
+      ]
+    }
   }
 }
 </script>

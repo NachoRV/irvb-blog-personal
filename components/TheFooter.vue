@@ -16,7 +16,7 @@
         <img src="~assets/svg/linkedin-2.svg" alt="twitter" class="icon">
       </a>
       <a
-        href="https://github.com/NachoRV"
+        href="https://twitter.com/I_R_V_B"
         target="_blank"
       >
         <img src="~assets/svg/github-2.svg" alt="twitter" class="icon">
