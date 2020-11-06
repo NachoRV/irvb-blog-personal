@@ -1,5 +1,5 @@
 ---
-title: Docker - Conceptos básicos 
+title: Docker - Conceptos básicos y principales comandos 
 description: Resumen sobre los principales comandos de Docker y su uso.
 fecha: 03/11/2020
 # img: https://images.unsplash.com/photo-1580752300992-559f8e0734e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80
@@ -15,7 +15,7 @@ tags:
 ## Introducción
 <br>
 
-Si esta es tu primer contacto con docker te recomiendo que leas mi anterior articulo: *[Docker - Introducción](/blog/docker-introduccion)*
+Si este es tu primer contacto con docker te recomiendo que leas mi anterior articulo: *[Docker - Introducción](/blog/docker-introduccion)*
 Para levantar un contenedor Docker lo primero que necesitamos es una imagen Docker, la cual podemos descargar desde el docker hub o bien construir
 la nuestra a medida mediante un **dockerfile**
 
@@ -48,58 +48,6 @@ Los pasos principales para crear una imagen a partir de un fichero Dockerfile so
   2. Crear el contenido.
   3. Construir la imagen mediante el comando docker build.
   
-  
-  Ejemplo de Dockerfile:
-  
-  ```sh
-  # Descarga la imagen de Ubuntu 18.04
-  FROM ubuntu:18.04
-  # Actualiza la imagen base de Ubuntu 18.04
-  RUN apt-get update
-  # Instalar Git
-  RUN apt-get -qqy install git
-  ```
-
-La sintaxis del comando es:
-```sh
-docker build [opciones] RUTA | URL | -
-```
-Las opciones más comunes son:
-
--   -t, nombre [:etiqueta]. Crea una imagen con el nombre y la etiqueta especificada a partir de las instrucciones indicadas en el fichero. Es recomendable asignar siempre un nombre a las imágenes que creamos.
--   –no-cache. Establecida por defecto, Docker guarda en memoria caché las acciones realizadas recientemente. Si se diese el caso de que ejecutamos un docker build varias veces, Docker comprobará si el fichero contiene las mismas instrucciones y, en caso afirmativo, no generará una nueva imagen. Para generar una nueva imagen omitiendo la memoria caché utilizaremos siempre esta opción.
--   –pull. También por defecto. Docker solo descargará la imagen especificada en la expresión FROM si no existe en el repositorio local. Para forzar que descargue la nueva versión de la imagen utilizaremos esta opción.
--   –quiet. Por defecto, se muestra todo el proceso de creación, los comandos ejecutados y su salida. Utilizando esta opción solo mostrará el identificador de la imagen creada
-
-### Para ver la imagenes 
-```sh
-docker images
-```
-
-Para crear el contenedor:
-
-```sh
-docker run -dti --name containerlaboratorio2a 5a00a1083e8d
-```
-
-Siendo 5a00a1083e8d el IMAGE ID de nuestra imagen. Con la opción --name asignamos un nombre a nuestro contenedor.
-
-Ejecutamos docker ps para verificar que el contenedor está levantado
-
-```sh
-docker ps
-```
-Por último, vamos a verificar que el contenedor está arrancado y tiene git instalado. Para ello ejecutamos la siguiente instrucción, que nos abrirá un bash sobre nuestro contenedor:
-
-```sh
-docker exec -i -t containerlaboratorio2a /bin/bash
-```
-
-## Instrucciones Dockerfile
-
-Aunque en esta URL disponemos de detalle sobre las distintas instrucciones y mejores prácticas para escribir Dockerfiles aquí mostramos un resumen con las más importantes.
-
-
 ### Instrucciones Dockerfile
 Aunque en esta [URL](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) disponemos de detalle sobre las distintas instrucciones y mejores prácticas para escribir Dockerfiles aquí mostramos un resumen con las más importantes.
 
@@ -168,6 +116,43 @@ USER: Por defecto, todas las acciones son realizadas por el usuario root. Aquí 
 ```sh
 USER <usuario>
 ```
+
+Para crear el contenedor:
+
+```sh
+docker run -dti --name containerlaboratorio2a 5a00a1083e8d
+```
+
+Siendo 5a00a1083e8d el IMAGE ID de nuestra imagen. Con la opción --name asignamos un nombre a nuestro contenedor.
+
+Ejecutamos docker ps para verificar que el contenedor está levantado
+
+```sh
+docker ps
+```
+Por último, vamos a verificar que el contenedor está arrancado y tiene git instalado. Para ello ejecutamos la siguiente instrucción, que nos abrirá un bash sobre nuestro contenedor:
+
+```sh
+docker exec -i -t containerlaboratorio2a /bin/bash
+```
+Una vez creado nuestro Dockerfile 
+La sintaxis del comando es:
+```sh
+docker build [opciones] RUTA | URL | -
+```
+Las opciones más comunes son:
+
+-   -t, nombre [:etiqueta]. Crea una imagen con el nombre y la etiqueta especificada a partir de las instrucciones indicadas en el fichero. 
+Es recomendable asignar siempre un nombre a las imágenes que creamos.
+-   –no-cache. Establecida por defecto, Docker guarda en memoria caché las acciones realizadas recientemente.
+ Si se diese el caso de que ejecutamos un docker build varias veces, Docker comprobará si el fichero contiene las mismas instrucciones y, 
+ en caso afirmativo, no generará una nueva imagen. Para generar una nueva imagen omitiendo la memoria caché utilizaremos siempre esta opción.
+-   –pull. También por defecto. Docker solo descargará la imagen especificada en la expresión FROM si no existe en el repositorio local.
+ Para forzar que descargue la nueva versión de la imagen utilizaremos esta opción.
+-   –quiet. Por defecto, se muestra todo el proceso de creación, los comandos ejecutados y su salida.
+ Utilizando esta opción solo mostrará el identificador de la imagen creada
+
+
 ### Docker run
 En esta [URL](https://docs.docker.com/engine/reference/commandline/run/) podemos encontrar detalle de todas las opciones disponibles para la ejecución de un docker run.
 
@@ -195,6 +180,7 @@ docker exec -it postgres-openathon sh
 ```
 
 # Volumenes
+
 ## ¿Cómo funciona?
 Podemos crear y administrar volúmenes fuera del ámbito de un contenedor. El comando `docker volume` proporciona los subcomandos:
 - `create`: crea un nuevo volumen
