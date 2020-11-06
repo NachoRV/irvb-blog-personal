@@ -96,13 +96,15 @@ h3 {
 .btn-nav {
   position: absolute;
   top: 10px;
-  right: 50px;
+  right: 10px;
 }
 .nav-movil-container {
   display: none;
 }
 .nav-icon{
-  size: 24px;
+  size: 40px;
+  width: 40px;
+  height: 40px;
 }
 @media (max-width: 1010px) {
   .nav-movil-container{
