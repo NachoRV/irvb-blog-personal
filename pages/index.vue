@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <the-header />
+    <the-header v-bind:tags="tagsNav" />
     <div class="container-items">
       <ul>
         <li
@@ -42,13 +42,13 @@ export default {
       .only(['title', 'description', 'img', 'slug', 'author', 'updatedAt'])
       .sortBy('createdAt', 'desc')
       .fetch()
-    const tags = await $content('tags', params.slug)
+    const tagsNav = await $content('tags', params.slug)
       .only(['name', 'description', 'img', 'slug', 'updatedAt'])
       .sortBy('createdAt', 'asc')
       .fetch()
     return {
       articles,
-      tags
+      tagsNav
     }
   },
   data() {

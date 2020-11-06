@@ -1,6 +1,6 @@
 <template>
   <div class="container-article">
-    <the-header />
+    <the-header v-bind:tags="tagsNav" />
     <!--  <AppSearchInput />-->
 
     <article class="article">
@@ -51,8 +51,14 @@ export default {
       .sortBy('createdAt', 'asc')
       .surround(params.slug)
       .fetch()
+    const tagsNav = await $content('tags')
+      .only(['name', 'description', 'img', 'slug', 'updatedAt'])
+      .sortBy('createdAt', 'asc')
+      .fetch()
     return {
       article,
+      tagsNav,
+      tagsList,
       tags,
       prev,
       next

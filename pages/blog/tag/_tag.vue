@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TheHeader />
+    <TheHeader v-bind:tags="tagsNav" />
     <div class="container-tag-items">
       <div class="">
         <img
@@ -55,6 +55,10 @@ import TheFooter from '~/components/TheFooter'
 export default {
   components : { TheFooter },
   async asyncData({ $content, params }) {
+    const tagsNav = await $content('tags', params.slug)
+      .only(['name', 'description', 'img', 'slug', 'updatedAt'])
+      .sortBy('createdAt', 'asc')
+      .fetch()
     const tags = await $content('tags')
       .where({ slug : { $contains : params.tag } })
       .limit(1)
@@ -66,7 +70,9 @@ export default {
       .fetch()
     return {
       articles,
-      tag
+      tagsNav,
+      tag,
+      tags
     }
   },
   methods : {
