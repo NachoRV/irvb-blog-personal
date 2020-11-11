@@ -1,8 +1,6 @@
 <template>
-  <div class="container-article">
-    <the-header v-bind:tags="tagsNav" />
-    <!--  <AppSearchInput />-->
-
+  <div>
+    <the-header :tags="tagsNav" />
     <article class="article">
       <img
         :src="article.img"
@@ -10,26 +8,24 @@
         class="img"
       />
       <h1>{{ article.title }}</h1>
-      <div>
-        <div>
-          📅 {{ formatDate(article.updatedAt) }} |
-          <span v-for="(tag, id) in article.tags" :key="id">
-            <NuxtLink :to="`/blog/tag/${tags[tag].slug}`">
-              <span
-                class=""
-              >
-                {{ tags[tag].name }}
-              </span>
-            </NuxtLink>
-          </span>
-        </div>
-        <!-- content from markdown -->
-        <nuxt-content :document="article" />
-        <!-- content author component -->
-        <!--<author :author="article.author" />-->
-        <!-- prevNext component -->
-        <PrevNext :prev="prev" :next="next" class="mt-8" />
+      <div class="date-tag-section">
+        📅 {{ formatDate(article.updatedAt) }} |
+        <span v-for="(tag, id) in article.tags" :key="id">
+          <NuxtLink :to="`/blog/tag/${tags[tag].slug}`">
+            <span
+              class=""
+            >
+              {{ tags[tag].name }}
+            </span>
+          </NuxtLink>
+        </span>
       </div>
+      <!-- content from markdown -->
+      <nuxt-content :document="article" />
+      <!-- content author component -->
+      <!--<author :author="article.author" />-->
+      <!-- prevNext component -->
+      <PrevNext :prev="prev" :next="next" class="mt-8" />
     </article>
     <TheFooter />
   </div>
@@ -119,55 +115,29 @@ export default {
 }
 </script>
 <style>
-.container-article {
-  margin: auto;
-}
 .article {
-  margin: 25px auto ;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
+  margin: auto;
+  width: 95%;
+  margin-bottom: 15px;
 }
 .img {
-  height: 300px;
+  display: block;
+  margin: 50px auto;
+  width: 90%;
 }
 img {
-  max-width:45vw;
-  height: auto;
+  width: 90%;
 }
-.nuxt-content {
-  max-width: 50vw;
+.date-tag-section {
+  margin-bottom: 50px;
 }
-@media (max-width: 1010px) {
-  .container-article {
-    max-width: 100%;
-  }
-  .article{
-    display: flex;
-    width: 100%;
-    margin: 0;
-    padding: 5px;
-    align-items: baseline;
-  }
-  img {
-    max-width: 90vw;
-    margin: auto;
-  }
+@media (min-width: 992px) {
   .img {
-    max-width: 90%;
-    height: auto;
-    margin: 0;
+    width: 750px;
   }
-  pre {
-    max-width: 90vw;
-  }
-  .nuxt-content {
-    max-width: 95vw;
-  }
-  .nuxt-content-container{
-    max-width: 90%;
+  .article {
+    width: 65%;
   }
 }
 </style>
+

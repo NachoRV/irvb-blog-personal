@@ -10,7 +10,7 @@
           <NuxtLink
             :to="{ name: 'blog-slug', params: { slug: article.slug } }"
           >
-            <div>
+            <div class="">
               <h2 class="font-bold">
                 {{ article.title }}
               </h2>
@@ -75,9 +75,11 @@ export default {
 }
 a {
   color: black;
+  text-decoration: none;
 }
 a:hover {
   color: black;
+  text-decoration: none;
 }
 ul, li {
   list-style: none;

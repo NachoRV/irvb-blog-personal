@@ -87,12 +87,11 @@ module.exports = [
     hid      : 'og:image:type',
     property : 'og:image:type',
     content  : 'image/jpeg'
+  },
+  {
+    hid     : 'google-site-verification',
+    name    : 'google-site-verification',
+    content : 't0Mh5Za5gTRB7_Ja-hEIgK_J7kXMGpu3J3MTWy-LPmM'
   }
-/*
- *  {
- *  hid     : 'google-site-verification',
- *  name    : 'google-site-verification',
- *  content : 'stbDTm71faQjfZWQC6edmlVgwdw7EpBB0jWRhYsdRB8'
- *  }
- */
+
 ]

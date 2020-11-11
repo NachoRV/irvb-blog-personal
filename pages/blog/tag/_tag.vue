@@ -1,50 +1,35 @@
 <template>
   <div>
-    <TheHeader v-bind:tags="tagsNav" />
-    <div class="container-tag-items">
-      <div class="">
-        <img
-          :src="tag.img"
-          :alt="tag.name"
-          class="absolute h-full w-full object-cover"
-        />
-      </div>
-      <div>
-        <div>
-          <h1>
-            {{ tag.name }}
-          </h1>
-          <p>{{ tag.description }}</p>
-
-          <nuxt-content :document="tag" />
-        </div>
-      </div>
-      <div>
-        <!--       <NuxtLink to="/">
-              <p class="hover:underline">Back to All Articles</p>
-              </NuxtLink> -->
-        <ul>
-          <li
-            v-for="article in articles"
-            :key="article.slug"
-            class="w-full px-2 xs:mb-6 md:mb-12 article-card"
+    <TheHeader :tags="tagsNav" />
+    <div class="container">
+      <img
+        :src="tag.img"
+        :alt="tag.name"
+        class="img"
+      />
+      <h1>
+        {{ tag.name }}
+      </h1>
+      <p>{{ tag.description }}</p>
+      <hr />
+      <ul>
+        <li
+          v-for="article in articles"
+          :key="article.slug"
+        >
+          <NuxtLink
+            :to="{ name: 'blog-slug', params: { slug: article.slug } }"
           >
-            <NuxtLink
-              :to="{ name: 'blog-slug', params: { slug: article.slug } }"
-              class="flex transition-shadow duration-150 ease-in-out shadow-sm hover:shadow-md xxlmax:flex-col"
-            >
-              <div>
-                <h2 class="">
-                  {{ article.title }}
-                </h2>
-                <p>
-                  {{ formatDate(article.updatedAt) }}
-                </p>
-              </div>
-            </NuxtLink>
-          </li>
-        </ul>
-      </div>
+            <h2>
+              {{ article.title }}
+            </h2>
+            <p>
+              {{ formatDate(article.updatedAt) }}
+            </p>
+            <hr />
+          </NuxtLink>
+        </li>
+      </ul>
     </div>
     <TheFooter />
   </div>
@@ -102,7 +87,7 @@ export default {
         {
           hid     : 'og:title',
           name    : 'og:title',
-          content : `${this.tag.title} | IRVB👨🏼‍💻`
+          content : `${this.tag.title} | IRVB  👨🏼‍💻`
         },
         {
           hid     : 'og:description',
@@ -130,31 +115,37 @@ export default {
 }
 </script>
 <style scoped>
-.container-tag-items {
-  width: 50%;
-  margin: auto;
+.container {
+  width: 95%;
+  margin: 15px auto;
 }
-a {
-  color: black;
-  text-decoration: none;
+.img {
+  display: block;
+  margin: 50px auto;
+  width: 90%;
 }
-a:hover {
-  color: black;
-  text-decoration: none;
+img {
+  width: 90%;
+}
+.date-tag-section {
+  margin-bottom: 50px;
 }
 ul, li {
-  font-family: 'Special Elite','Menlo','Inconsolata', cursive;
-  list-style: none;
-  margin: auto;
+ list-style: none;
   padding: 0;
+  margin: 15px 0;
 }
-h1, p {
-  font-family: 'Special Elite','Menlo','Inconsolata', cursive;
+
+a {
+  color: black;
 }
-@media (max-width: 1010px) {
-  .container-tag-items {
-    width: 100%;
-    margin: auto;
+
+@media (min-width: 992px) {
+  .img {
+    width: 750px;
+  }
+  .container {
+    width: 65%;
   }
 }
 </style>
