@@ -51,7 +51,7 @@ export default {
   ],
   // Google Analitics
   googleAnalytics : {
-    id : 'G-HLH38PGKZP'
+    id : 'G-D82KM0RM50'
   },
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content : {},
