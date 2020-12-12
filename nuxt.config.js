@@ -29,7 +29,6 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins : [
-
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -51,7 +50,7 @@ export default {
   ],
   // Google Analitics
   googleAnalytics : {
-    id : 'G-D82KM0RM50'
+    id : 'UA-185378495-1'
   },
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content : {},
