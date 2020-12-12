@@ -29,8 +29,8 @@
               <NuxtLink :to="`/blog/tag/${tag.slug}`">
                 <p>{{ tag.name }}</p>
               </NuxtLink>
-      </li>
-    </ul>
+            </li>
+          </ul>
         </div>
       </b-sidebar>
     </div>

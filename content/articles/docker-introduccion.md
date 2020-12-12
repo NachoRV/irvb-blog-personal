@@ -18,10 +18,10 @@ tags:
 <br>
 
 **"En mí PC si funciona"**, cuantas veces hemos dicho u oído esta frase, seguro que más de las que nos gustaría, esto es así porque venimos trabajando de una forma en la que no se tienen 
-en cuenta modelos de integración, empaquetado, distribución y ejecución consistentes sin importar dónde y cómo se hagan.
+en cuenta modelos de integración, empaquetado, distribución y ejecución consistentes, sin importar dónde y cómo se hagan.
 
 Con la containerización tratamos de solucionar este problema, **containerizar** una aplicación es, explicado de forma sencilla, ejecutar la aplicación de forma 
-aislada al resto de procesos, en la máquina que la hospeda. Eso permite compartir mucho mejor los recursos físicos de un servidor, 
+aislada al resto de procesos de la máquina que la hospeda. Eso permite compartir mucho mejor los recursos físicos de un servidor, 
 aumentando la densidad de aplicaciones, pero manteniendo el aislamiento entre ellas.
 
 La containerización no es una técnica nueva, sino que viene usándose desde hace más de 10 años en sistemas Linux. Linux incluye funcionalidades para aislar procesos unos de otros,
