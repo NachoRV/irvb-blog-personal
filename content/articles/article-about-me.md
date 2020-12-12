@@ -10,7 +10,6 @@ author:
   bio: Para que nos conozcamos un poco mejor ... 
   img: /yo.jpg
 tags: 
-  - Otros
 ---
 
 ## Hola
