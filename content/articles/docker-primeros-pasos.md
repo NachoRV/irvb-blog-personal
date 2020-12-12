@@ -19,8 +19,8 @@ tags:
 Si este es tu primer contacto con docker te recomiendo que leas mi anterior articulo: *[Docker - Introducción](/blog/docker-introduccion)*,
  en el hacemos un repaso a los principales conceptos de docker. 
 
-Para trabajar con Docker lo primero que necesitamos es una imagen Docker, la cual podemos descargar desde el un repositorio com [docker hub](https://hub.docker.com/) o bien podemos construir
-la nuestra a medida mediante un fichero **dockerfile**.
+Para trabajar con Docker lo primero que necesitamos es una imagen Docker, la cual podemos descargar desde el repositorio oficial de docker: [docker hub](https://hub.docker.com/) o bien podemos construir
+la nuestra a medida, mediante un fichero **dockerfile**.
 
 En este articulo veremos como construir nuestras propias imágenes y al final te contare como descargarte una del repositorio oficial.
 
@@ -51,76 +51,79 @@ Los pasos principales para crear una imagen a partir de un fichero Dockerfile so
   2. Crear el contenido.
   3. Construir la imagen mediante el comando docker build.
   
- ## Instrucciones Dockerfile
+## Instrucciones Dockerfile
  
- Comenzaremos con un repaso a las instrucciones mas importantes que tenemos en nustro dockerfile, puedes encontrar más detalle sobre las distintas instrucciones y mejores prácticas para escribir Dockerfiles
- [aquí](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
+Comenzaremos con un repaso a las instrucciones mas importantes que tenemos en nustro dockerfile, puedes encontrar más detalle sobre las distintas instrucciones y mejores prácticas para escribir Dockerfiles
+[aquí](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
  
- FROM: Indica la imagen base sobre la que se construirá la aplicación dentro del contenedor. Todos los Dockerfiles comienzan con un FROM.
- ```sh
- FROM  <imagen>
- FROM  <imagen>:<tag>
- ```
+FROM: Indica la imagen base sobre la que se construirá la aplicación dentro del contenedor. Todos los Dockerfiles comienzan con un FROM.
+```sh
+FROM  <imagen>
+FROM  <imagen>:<tag>
+```
  
- RUN: Nos permite ejecutar comandos en el contenedor.
- ```sh
+RUN: Nos permite ejecutar comandos en el contenedor.
+```sh
  RUN  <comando>
  ```
- CMD: Se encarga de pasar valores por defecto a un contenedor. Entre estos valores se pueden pasar ejecutables.
- ```sh
- CMD [“ejecutable”, “parametro1”, “parametro2”, …]
+CMD: Se encarga de pasar valores por defecto a un contenedor. Entre estos valores se pueden pasar ejecutables.
+```sh
+CMD [“ejecutable”, “parametro1”, “parametro2”, …]
  
- CMD [“parametro1”, “parametro2”, ….]
- ```
- La segunda opción se utiliza para pasar parámetros al comando EntryPoint.
+CMD [“parametro1”, “parametro2”, ….]
+```
+La segunda opción se utiliza para pasar parámetros al comando EntryPoint.
  
- A diferencia del comando RUN,   que se utiliza para crear la imagen de un contenedor, CMD se ejecuta una vez que el contenedor se ha inicializado.
+A diferencia del comando RUN,   que se utiliza para crear la imagen de un contenedor, CMD se ejecuta una vez que el contenedor se ha inicializado.
  
- ENTRYPOINT: Se utiliza cuando se quiere ejecutar un ejecutable en el contenedor en su arranque.
- ```sh
- ENTRYPOINT "comando" "parametro1" "parametro2"
- ```
- ENV: Establece variables de entorno dentro del contenedor.
- ```sh
- ENV  <clave> <valor>
- ```
- ADD: Esta instrucción se encarga de copiar los ficheros y directorios desde una ubicación especificada y los agrega al sistema de ficheros del contenedor.
+ENTRYPOINT: Se utiliza cuando se quiere ejecutar un ejecutable en el contenedor en su arranque.
+```sh
+ENTRYPOINT "comando" "parametro1" "parametro2"
+```
+ENV: Establece variables de entorno dentro del contenedor.
+```sh
+ENV  <clave> <valor>
+```
+ADD: Esta instrucción se encarga de copiar los ficheros y directorios desde una ubicación especificada y los agrega al sistema de ficheros del contenedor.
  
- ```sh
- ADD <fuente> <destino>
+```sh
+ADD <fuente> <destino>
  ```
  
  MAINTAINER: Nos permite configurar datos del autor del Dockerfile, principalmente su nombre y su dirección de correo electrónico.
- ```sh
- MAINTANER <nombre> <"correo">
- ```
- LABEL: Nos permite añadir metadatos a nuestra imagen.
- ```sh
- LABEL <clave> <valor>
- ```
- 
- 
- COPY: La instrucción copia ficheros y directorios de un path origen y los añade a un path destino dentro del contenedor.
- ```sh
+```sh
+MAINTANER <nombre> <"correo">
+```
+LABEL: Nos permite añadir metadatos a nuestra imagen.
+```sh
+LABEL <clave> <valor>
+```
+ COPY: La instrucción copia ficheros y directorios de un path origen y los añade a un path destino dentro del contenedor. 
+
+```sh
  COPY <origen> <destino>
- ```
- 
- EXPOSE: Indica los puertos en los que va a escuchar el contenedor. Con ello, los puertos no serán accesibles desde el host, para esto será necesario utilizar la exposición de puertos mediante la opción -p de docker run.
- ```sh
- EXPOSE <puerto>
- ```
- VOLUME: Esta instrucción crea un volumen como punto de montaje dentro del contenedor y es visible desde el host anfitrión.
- ```sh
- VOLUME <path>
- ```
- WORKDIR: Establece el directorio por defecto para la ejecución de las instrucciones RUN, CMD, ENTRYPOINT, COPY y ADD siguientes en el Dockerfile.
- ```sh
- WORKDIR <path>
- ```
- USER: Por defecto, todas las acciones son realizadas por el usuario root. Aquí podemos indicar un usuario diferente.
- ```sh
- USER <usuario>
- ```
+```
+EXPOSE: Indica los puertos en los que va a escuchar el contenedor. Con ello, los puertos no serán accesibles desde el host, para esto será necesario utilizar la exposición de puertos mediante la opción -p de docker run. 
+
+```sh 
+EXPOSE <puerto>
+```
+VOLUME: Esta instrucción crea un volumen como punto de montaje dentro del contenedor y es visible desde el host anfitrión.
+```sh
+VOLUME <path>
+```
+WORKDIR: Establece el directorio por defecto para la ejecución de las instrucciones RUN, CMD, ENTRYPOINT, COPY y ADD siguientes en el Dockerfile.
+```sh
+WORKDIR <path>
+```
+USER: Por defecto, todas las acciones son realizadas por el usuario root. Aquí podemos indicar un usuario diferente.
+
+```sh
+USER <usuario>
+```
+<br>
+
+
 ## Creando la imagen
 
 Ya tenemos nuestro dockerfile configurado lo siquiente que tenemos que hacer es crear la imagen, para ello debemos ejecutar el comando **docker build**
